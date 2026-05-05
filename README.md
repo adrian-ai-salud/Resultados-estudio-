@@ -4,11 +4,6 @@
 
 This repository contains the analysis code for the cross-sectional study
 
-## Citation
-Vences Garrido A, Vicario-Merino Á, Buerba Díaz A. Perception, acceptance, 
-and preparedness regarding artificial intelligence among primary care nurses: 
-A cross-sectional study. PLOS ONE. 2026; [in press].
-
 ## Contents
 - `Perception_Acceptance_and_Preparedness...ipynb` — Full Jupyter notebook 
   with all analyses (descriptive, psychometric, bivariate, Firth-penalized 
