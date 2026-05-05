@@ -1,6 +1,6 @@
 # Perception, Acceptance, and Preparedness Regarding Artificial Intelligence Among Primary Care Nurses
 
-This repository contains the analysis code for the cross-sectional study published in PLOS ONE.
+This repository contains the analysis code for the cross-sectional study
 
 ## Citation
 Vences Garrido A, Vicario-Merino Á, Buerba Díaz A. Perception, acceptance, 
