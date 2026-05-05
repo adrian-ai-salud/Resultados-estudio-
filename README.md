@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/1224538071.svg)](https://doi.org/10.5281/zenodo.20038382)
+
 # Perception, Acceptance, and Preparedness Regarding Artificial Intelligence Among Primary Care Nurses
 
 This repository contains the analysis code for the cross-sectional study
