@@ -2,31 +2,23 @@
 
 # Perception, Acceptance, and Preparedness Regarding Artificial Intelligence Among Primary Care Nurses
 
-This repository contains the analysis code for the cross-sectional study
+This repository provides the code, statistical models, and methodological materials necessary to fully reproduce the analyses for the cross-sectional study on AI adoption among primary care nurses.
 
-## Contents
-- `Perception_Acceptance_and_Preparedness...ipynb` — Full Jupyter notebook 
-  with all analyses (descriptive, psychometric, bivariate, Firth-penalized 
-  logistic regression, NLP).
+## Repository Structure
 
-## Reproducibility
-- **Language:** Python 3.10
-- **Random seed:** 42
-- **Key packages:** pandas 2.2.2, numpy 2.0.2, scipy, statsmodels 0.14.6, 
-  scikit-learn, factor_analyzer, pingouin, spaCy (`es_core_news_sm`)
+- `Perception_Acceptance_and_Preparedness.ipynb`: The complete analytical pipeline. This notebook executes the structural validation of the dataset, descriptive statistics, psychometric evaluation (EFA, McDonald's Omega), bivariate analysis, multivariable modeling (Firth-penalized logistic regression), and the directed content analysis of open-ended responses.
 
-## Installation
+## Computational Reproducibility
+
+To ensure the exact reproduction of all stochastic procedures (including factor-analysis initialization and penalized regression estimations), a global random seed (`42`) is strictly enforced throughout the code.
+
+- **Environment:** Python 3.10
+- **Key Dependencies:** `pandas` (2.2.2), `numpy` (2.0.2), `scikit-learn` (1.5.2), `statsmodels` (0.14.6), `factor_analyzer`, `pingouin`, and `spaCy` (`es_core_news_sm`).
+
+### Installation
+
+To replicate the execution environment, install the required packages. Note that `scikit-learn` is pinned to version 1.5.2 to maintain compatibility with `factor_analyzer`.
+
 ```bash
-pip install pandas numpy scipy statsmodels scikit-learn factor_analyzer pingouin openpyxl spacy matplotlib seaborn
+pip install "scikit-learn==1.5.2" "factor_analyzer==0.5.1" pandas numpy scipy statsmodels pingouin openpyxl spacy matplotlib seaborn
 python -m spacy download es_core_news_sm
-```
-
-## Data
-The de-identified dataset used in this analysis is available upon request 
-from the corresponding author / [or include here if you upload it].
-
-## License
-MIT — see LICENSE file.
-
-## Contact
-Adrián Vences Garrido — adrian.vences.garrido@sergas.es
