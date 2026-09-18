@@ -1,61 +1,78 @@
 [![DOI](https://zenodo.org/badge/1224538071.svg)](https://doi.org/10.5281/zenodo.20038382)
-
+ 
 # Perception, Acceptance, and Preparedness Regarding Artificial Intelligence Among Primary Care Nurses
-
+ 
 This repository contains the data, code, and methodological materials needed to reproduce the analyses reported in the cross-sectional study on artificial intelligence (AI) perception, acceptance, and preparedness among primary care nurses, measured with the SHAIP questionnaire.
-
+ 
 ## Repository structure
-
+ 
 | File | Description |
 |------|-------------|
 | `SHAIP-Statistical-Analysis.ipynb` | Complete analytical pipeline (see *Methods summary* below). |
-| `Data Set.csv` | De-identified survey data (102 respondents × 26 variables) exported from the online questionnaire (original Galician labels). Includes the ten SHAIP Likert items and the two open-ended questions. |
+| `Data Set.csv` | De-identified survey data (102 respondents) exported from the online questionnaire (original Galician labels). Includes the ten SHAIP Likert items and the two open-ended questions. Age is provided in bands, and the submission timestamp and geographic location have been removed; see *Data protection and de-identification* below. |
 | `Revisor 1.csv` / `Revisor 2.csv` | Independent presence/absence coding of the open-ended **barriers** responses by two coders, used for the inter-coder reliability analysis. |
 | `discrepancies_resolved.xlsx` | Consensus resolution of the coding disagreements for the barriers qualitative analysis; source of the final prevalences reported in Table 4. |
 | `Revisor1.1.xlsx` / `Revisor2.2.xlsx` | Independent presence/absence coding of the open-ended **training areas** responses by two coders. |
 | `Areas_discrepancia_resueltas_Final.xlsx` | Consensus resolution of the coding disagreements for the training areas qualitative analysis; source of the final prevalences reported in Table 5. |
-
+ 
 *(Note: The final output workbooks containing the consolidated tables, metrics, and models—`AI_Nursing_Analysis_Results.xlsx` and `AI_Nursing_Training_Areas.xlsx`—are generated automatically upon successfully running the notebook and are not tracked in this repository).*
-
+ 
+## Data protection and de-identification
+ 
+The study population consists of 102 nurses working in a single health area. In a population of this size, the combination of exact age, submission timestamp and geographic location constitutes a set of quasi-identifiers with a non-negligible risk of re-identification. The following measures have therefore been applied to the publicly released dataset:
+ 
+| Variable | Measure | Technique |
+|----------|---------|-----------|
+| Age | Recoded from exact values into age bands | Generalisation |
+| Submission timestamp | Removed | Suppression |
+| Geographic location (health area / municipality) | Removed | Suppression |
+ 
+No other variable has been altered. The Likert items, the open-ended responses and all remaining covariates are released exactly as analysed.
+ 
+**Impact on reproducibility.** The analyses that treat age as a continuous variable — the Shapiro–Wilk normality test, the Mann–Whitney U comparison between users and non-users, and the Firth-penalised logistic regression — were computed on the original numeric age variable and cannot be reproduced exactly from the publicly released dataset. The original variable is retained by the corresponding author and is not publicly released for data protection reasons. Requests from researchers wishing to verify these specific analyses can be addressed to the corresponding author. All remaining analyses, including the full psychometric evaluation, the SHAIP item- and construct-level scores, the categorical bivariate comparisons and the entire qualitative pipeline, are fully reproducible from the files in this repository.
+ 
 ## Methods summary
-
+ 
 **Quantitative analysis.** Structural validation of the dataset; descriptive statistics with assumption checks (Shapiro–Wilk test for the normality of age); SHAIP item- and construct-level scores with 95% confidence intervals. Psychometric evaluation was conducted via exploratory factor analysis (two theory-driven factors, principal axis factoring with varimax rotation), with reliability assessed by both Cronbach's alpha and McDonald's omega. Bivariate comparisons of users versus non-users applied chi-square with Yates' continuity correction, Fisher's exact test where expected counts were below five, and the Mann–Whitney U test for age. Multivariable modelling utilized Firth-penalized logistic regression. Given the events-per-variable ratio of 5:1, confidence intervals were obtained by profile penalized likelihood and p-values by the penalized likelihood-ratio test rather than Wald approximations, with point estimates cross-checked against standard maximum likelihood. A sensitivity analysis excluding "don't know" responses is included.
-
+ 
 **Qualitative analysis.** The two open-ended questions (perceived barriers and training interests) were analysed using a directed (deductive) content-analysis approach. Predefined dictionaries (codebooks) operationalised each category, and responses were initially coded by case-insensitive lexical matching. The coding is rule-based and does not involve natural-language-processing models or interpretive thematic analysis. To assess the reliability of the coding scheme, two coders independently coded all responses for both questions. Agreement was quantified with Cohen's kappa per category, yielding substantial agreement for both the barriers analysis (mean kappa = 0.639) and the training areas analysis (mean kappa = 0.680). All disagreements were subsequently resolved by human consensus, which serves as the definitive source for the reported prevalences.
-
+ 
 ## Computational reproducibility
-
+ 
 A global random seed (`42`) is set so that every stochastic procedure (factor-analysis initialisation, penalised regression, resampling) returns identical results on re-execution.
-
+ 
 - **Environment:** Python 3.10
 - **Key dependencies:** `pandas` (2.2.2), `numpy` (2.0.2), `scipy`, `scikit-learn` (1.5.2), `statsmodels` (0.14.6), `factor_analyzer` (0.5.1), `pingouin`, `openpyxl`, `matplotlib`, `seaborn`.
-
 `scikit-learn` is explicitly pinned to version 1.5.2 to maintain compatibility with `factor_analyzer`.
-
+ 
 ### Installation
-
+ 
 ```bash
 pip install --quiet "scikit-learn==1.5.2" "factor_analyzer==0.5.1" pandas numpy scipy statsmodels pingouin openpyxl matplotlib seaborn
 ```
-
+ 
 ### How to run
-
+ 
 Open `SHAIP-Statistical-Analysis.ipynb` in Jupyter or Google Colab and execute the cells in sequence. The notebook is designed to halt and prompt for file uploads at the specific stages where they are required:
-
-1. `Data Set.csv` — at the data-loading step (Section 2).
+ 
+1. `Data Set.csv` — at the data-loading step (Section 2). Note that the steps involving age as a continuous variable will not run as published on this version of the dataset; see *Data protection and de-identification*.
 2. `Revisor 1.csv` and `Revisor 2.csv` — at the barriers inter-coder reliability step (Section 9.1).
 3. `discrepancies_resolved.xlsx` — at the barriers consensus resolution step (Section 9.2).
 4. `Revisor1.1.xlsx` and `Revisor2.2.xlsx` — at the training areas inter-coder reliability step (Section 9.2).
 5. `Areas_discrepancia_resueltas_Final.xlsx` — at the training areas consensus resolution step (Section 9.2).
-
 All tables and model diagnostics are automatically consolidated and exported to Excel workbooks in the final cells.
-
+ 
+## Versions
+ 
+This repository is archived on Zenodo. The DOI in the badge above is the concept DOI and always resolves to the most recent version. Version-specific DOIs are listed on the Zenodo record.
+ 
+- **v3.0.0** — Enhanced de-identification of the dataset (age banded; submission timestamp and geographic location removed).
 ## Citation
-
+ 
 If you use these materials, please cite the dataset/code via its DOI:
-
+ 
 > Vences Garrido, A. *Perception, acceptance, and preparedness regarding artificial intelligence among primary care nurses: data and analysis code.* Zenodo. [https://doi.org/10.5281/zenodo.20038382](https://doi.org/10.5281/zenodo.20038382)
-
+ 
 ## License
-
+ 
 Released under the terms of the `LICENSE` file in this repository.
