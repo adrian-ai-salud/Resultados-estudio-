@@ -74,5 +74,6 @@ If you use these materials, please cite the dataset/code via its DOI:
 > Vences Garrido, A. *Perception, acceptance, and preparedness regarding artificial intelligence among primary care nurses: data and analysis code.* Zenodo. [https://doi.org/10.5281/zenodo.20038382](https://doi.org/10.5281/zenodo.20038382)
  
 ## License
- 
-Released under the terms of the `LICENSE` file in this repository.
+
+- **Code** (`SHAIP-Statistical-Analysis.ipynb`): MIT License; see `LICENSE`.
+- **Data and coding files** (`Data Set.csv`, `Revisor 1.csv`, `Revisor 2.csv`, `Revisor1.1.xlsx`, `Revisor2.2.xlsx`, `discrepancies_resolved.xlsx`, `Areas_discrepancia_resueltas_Final.xlsx`, `S3_Table_NonSubstantive_Responses.xlsx`): [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
